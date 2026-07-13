@@ -1,9 +1,9 @@
-import Dashboard from "@/components/sections/Dashboard";
+import HeroSection from "@/components/sections/HeroSection";
 
 export default function Home() {
   return (
-    <div>
-      <Dashboard />
-    </div>
-  )
+    <>
+      <HeroSection />
+    </>
+  );
 }

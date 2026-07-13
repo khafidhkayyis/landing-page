@@ -1,46 +1,84 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { navLinks, siteConfig } from "@/config/site";
 
+import { Container } from "./Container";
 import { NavbarMobileMenu } from "./NavbarMobileMenu";
 
-export function Navbar() {
+type NavbarProps = {
+  variant?: "default" | "transparent";
+};
+
+const variantStyles = {
+  default:
+    "sticky top-0 z-50 border-b border-foreground/10 bg-background/80 backdrop-blur-sm",
+  transparent: "relative z-20 bg-transparent",
+} as const;
+
+export function Navbar({ variant = "default" }: NavbarProps) {
+  const isTransparent = variant === "transparent";
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-foreground/10 bg-background/80 backdrop-blur-sm">
-      <nav
-        className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
-        aria-label="Main navigation"
-      >
+    <header className={`w-full ${variantStyles[variant]}`}>
+      <Container className="relative">
+        <nav
+          className="flex h-16 items-center justify-between"
+          aria-label="Main navigation"
+        >
         <Link
           href="/"
-          className="text-lg font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80"
+          className={`flex items-center gap-2 transition-opacity hover:opacity-80 ${
+            isTransparent ? "text-white" : "text-foreground"
+          }`}
         >
-          {siteConfig.name}
+          <Image
+            src="/images/skyfy-logo.png"
+            alt=""
+            width={36}
+            height={36}
+            className="size-9"
+            priority
+          />
+          <span className="text-lg font-semibold tracking-tight">
+            {siteConfig.name}
+          </span>
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-8">
+          <ul className="hidden items-center gap-8 md:flex">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors ${
+                    isTransparent
+                      ? "text-white/80 hover:text-white"
+                      : "text-foreground/80 hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        <div className="flex items-center gap-2">
-          <Link
-            href="/get-started"
-            className="hidden rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 md:inline-block"
-          >
-            Get Started
-          </Link>
-          <NavbarMobileMenu links={navLinks} />
+          <div className="flex items-center gap-2">
+            <Link
+              href="/get-started"
+              className={`hidden rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90 md:inline-block ${
+                isTransparent
+                  ? "bg-cyan-500 text-white hover:bg-cyan-400"
+                  : "bg-foreground text-background"
+              }`}
+            >
+              Get Started
+            </Link>
+            <NavbarMobileMenu links={navLinks} variant={variant} />
+          </div>
         </div>
-      </nav>
+        </nav>
+      </Container>
     </header>
   );
 }

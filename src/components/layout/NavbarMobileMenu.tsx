@@ -7,17 +7,26 @@ import type { NavLink } from "@/types/navigation";
 
 type NavbarMobileMenuProps = {
   links: NavLink[];
+  variant?: "default" | "transparent";
 };
 
-export function NavbarMobileMenu({ links }: NavbarMobileMenuProps) {
+export function NavbarMobileMenu({
+  links,
+  variant = "default",
+}: NavbarMobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const isTransparent = variant === "transparent";
 
   return (
     <div className="md:hidden">
       <button
         type="button"
         onClick={() => setIsOpen((open) => !open)}
-        className="inline-flex items-center justify-center rounded-md p-2 text-foreground transition-colors hover:bg-foreground/5"
+        className={`inline-flex items-center justify-center rounded-md p-2 transition-colors ${
+          isTransparent
+            ? "text-white hover:bg-white/10"
+            : "text-foreground hover:bg-foreground/5"
+        }`}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
         aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -59,7 +68,11 @@ export function NavbarMobileMenu({ links }: NavbarMobileMenuProps) {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="absolute inset-x-0 top-16 border-b border-foreground/10 bg-background px-4 py-4 shadow-lg"
+          className={`absolute inset-x-0 top-16 px-4 py-4 shadow-lg ${
+            isTransparent
+              ? "border-b border-white/10 bg-black/80 backdrop-blur-sm"
+              : "border-b border-foreground/10 bg-background"
+          }`}
         >
           <ul className="flex flex-col gap-4">
             {links.map((link) => (
@@ -67,7 +80,11 @@ export function NavbarMobileMenu({ links }: NavbarMobileMenuProps) {
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block text-base font-medium text-foreground/80 transition-colors hover:text-foreground"
+                  className={`block text-base font-medium transition-colors ${
+                    isTransparent
+                      ? "text-white/80 hover:text-white"
+                      : "text-foreground/80 hover:text-foreground"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -77,7 +94,11 @@ export function NavbarMobileMenu({ links }: NavbarMobileMenuProps) {
               <Link
                 href="/get-started"
                 onClick={() => setIsOpen(false)}
-                className="inline-block rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                className={`inline-block rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90 ${
+                  isTransparent
+                    ? "bg-cyan-500 text-white"
+                    : "bg-foreground text-background"
+                }`}
               >
                 Get Started
               </Link>

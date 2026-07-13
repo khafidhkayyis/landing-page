@@ -2,12 +2,14 @@ import Link from "next/link";
 
 import { footerLinkGroups, siteConfig } from "@/config/site";
 
+import { Container } from "./Container";
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="border-t border-foreground/10 bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <Container className="py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
@@ -47,7 +49,7 @@ export function Footer() {
             &copy; {currentYear} {siteConfig.name}. All rights reserved.
           </p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }
