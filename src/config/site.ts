@@ -1,7 +1,7 @@
 import type { FooterLinkGroup, NavLink } from "@/types/navigation";
 
 export const siteConfig = {
-  name: "Skyfy",
+  name: "Skyfy Enterprise",
   description: "Build beautiful landing pages with Next.js and Tailwind CSS.",
   url: "https://skyfy.com",
 };
@@ -10,7 +10,6 @@ export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Features", href: "#features" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export const footerLinkGroups: FooterLinkGroup[] = [
@@ -27,7 +26,6 @@ export const footerLinkGroups: FooterLinkGroup[] = [
     links: [
       { label: "About", href: "#about" },
       { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "#contact" },
     ],
   },
   {

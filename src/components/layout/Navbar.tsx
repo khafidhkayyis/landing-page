@@ -13,7 +13,7 @@ type NavbarProps = {
 const variantStyles = {
   default:
     "sticky top-0 z-50 border-b border-foreground/10 bg-background/80 backdrop-blur-sm",
-  transparent: "relative z-20 bg-transparent",
+  transparent: "relative z-20 border-b border-white/30 bg-transparent",
 } as const;
 
 export function Navbar({ variant = "default" }: NavbarProps) {
@@ -26,57 +26,54 @@ export function Navbar({ variant = "default" }: NavbarProps) {
           className="flex h-16 items-center justify-between"
           aria-label="Main navigation"
         >
-        <Link
-          href="/"
-          className={`flex items-center gap-2 transition-opacity hover:opacity-80 ${
-            isTransparent ? "text-white" : "text-foreground"
-          }`}
-        >
-          <Image
-            src="/images/skyfy-logo.png"
-            alt=""
-            width={36}
-            height={36}
-            className="size-9"
-            priority
-          />
-          <span className="text-lg font-semibold tracking-tight">
-            {siteConfig.name}
-          </span>
-        </Link>
+          <Link
+            href="/"
+            className={`flex items-center gap-2 transition-opacity hover:opacity-80 ${isTransparent ? "text-white" : "text-foreground"
+              }`}
+          >
+            <Image
+              src="/images/skyfy-logo.png"
+              alt=""
+              width={36}
+              height={36}
+              className="size-9"
+              priority
+            />
+            <span className="text-lg font-semibold tracking-tight uppercase">
+              {siteConfig.name}
+            </span>
+          </Link>
 
-        <div className="flex items-center gap-8">
-          <ul className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`text-sm font-medium transition-colors ${
-                    isTransparent
+          <div className="flex items-center gap-8">
+            <ul className="hidden items-center gap-8 md:flex">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`text-sm font-medium uppercase transition-colors ${isTransparent
                       ? "text-white/80 hover:text-white"
                       : "text-foreground/80 hover:text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+                      }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-          <div className="flex items-center gap-2">
-            <Link
-              href="/get-started"
-              className={`hidden rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90 md:inline-block ${
-                isTransparent
+            <div className="flex items-center gap-2">
+              <Link
+                href="/get-started"
+                className={`hidden rounded-lg px-4 py-2 text-sm font-medium uppercase transition-opacity hover:opacity-90 md:inline-block ${isTransparent
                   ? "bg-cyan-500 text-white hover:bg-cyan-400"
                   : "bg-foreground text-background"
-              }`}
-            >
-              Get Started
-            </Link>
-            <NavbarMobileMenu links={navLinks} variant={variant} />
+                  }`}
+              >
+                Contact Us
+              </Link>
+              <NavbarMobileMenu links={navLinks} variant={variant} />
+            </div>
           </div>
-        </div>
         </nav>
       </Container>
     </header>

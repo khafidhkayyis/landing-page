@@ -80,7 +80,7 @@ export function NavbarMobileMenu({
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-base font-medium transition-colors ${
+                  className={`block text-base font-medium uppercase transition-colors ${
                     isTransparent
                       ? "text-white/80 hover:text-white"
                       : "text-foreground/80 hover:text-foreground"
@@ -94,13 +94,13 @@ export function NavbarMobileMenu({
               <Link
                 href="/get-started"
                 onClick={() => setIsOpen(false)}
-                className={`inline-block rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90 ${
+                className={`inline-block rounded-4xl px-4 py-2 text-sm font-medium uppercase transition-opacity hover:opacity-90 ${
                   isTransparent
                     ? "bg-cyan-500 text-white"
                     : "bg-foreground text-background"
                 }`}
               >
-                Get Started
+                Contact Us
               </Link>
             </li>
           </ul>

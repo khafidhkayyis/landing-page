@@ -36,13 +36,13 @@ export default function HeroSection() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
               href="/get-started"
-              className="rounded-full bg-cyan-500 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-cyan-400"
+              className="rounded-lg bg-cyan-500 border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
-              Get Started
+              Contact Us
             </Link>
             <Link
               href="#features"
-              className="rounded-full border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              className="rounded-lg bg-[#EC530C] border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
               Learn More
             </Link>
