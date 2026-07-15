@@ -33,6 +33,23 @@ function ContactForm() {
         />
       </div>
 
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <input
+          type="text"
+          name="industry"
+          placeholder="Industry"
+          className={inputClassName}
+          required
+        />
+        <input
+          type="text"
+          name="numberOfEmployees"
+          placeholder="Number of Employees"
+          className={inputClassName}
+          required
+        />
+      </div>
+
       <input
         type="text"
         name="subject"

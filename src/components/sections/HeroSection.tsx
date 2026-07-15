@@ -20,10 +20,9 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex min-h-[70vh] flex-col">
+      <div className="relative z-10 flex min-h-[150vh] lg:min-h-[70vh] flex-col">
         <Navbar variant="transparent" />
-
-        <Container className="flex flex-1 flex-col items-start justify-center text-center">
+        <Container className="flex flex-1 flex-col items-center lg:items-start justify-center text-center">
           <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Unleash Your
           </h1>
@@ -33,7 +32,7 @@ export default function HeroSection() {
           <p className="mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
             Transform Ideas into Impactful Tech Solutions
           </p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-row gap-4 lg:flex-col">
             <Link
               href="/get-started"
               className="rounded-lg bg-cyan-500 border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"

@@ -5,7 +5,7 @@ import { footerLinkGroups, siteConfig } from "@/config/site";
 import { Container } from "./Container";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = 2022;
 
   return (
     <footer className="border-t border-foreground/10 bg-background">
