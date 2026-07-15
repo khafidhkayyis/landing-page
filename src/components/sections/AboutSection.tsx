@@ -6,8 +6,8 @@ import { RotatingText } from "@/components/ui/RotatingText";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-black py-16 text-white lg:py-24">
-      <Container>
+    <section id="about" className="bg-black py-16 text-white  lg:py-24">
+      <Container className="relative">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* LEFT — images */}
           <div className="relative mx-auto h-[400px] w-full max-w-[340px] sm:h-[480px] sm:max-w-[400px] md:h-[560px] md:max-w-[460px] lg:mx-0 lg:h-[650px] lg:max-w-none">
@@ -25,7 +25,7 @@ export default function AboutSection() {
             </div>
 
             {/* Image kecil */}
-            <div className="absolute bottom-0 left-0">
+            <div className="absolute bottom-0 left-0 z-20">
               <Image
                 src="/images/about-small.png"
                 alt="Jakarta city skyline at night"
@@ -64,10 +64,13 @@ export default function AboutSection() {
             </div>
 
             {/* Clients */}
-            <ClientMarquee />
+            <div className="absolute bottom-0 left-0 right-0 z-10">
+              <ClientMarquee />
+            </div>
+
           </div>
         </div>
-      </Container>
-    </section>
+      </Container >
+    </section >
   );
 }

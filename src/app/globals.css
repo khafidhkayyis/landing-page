@@ -10,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --animate-marquee-horizontal: marquee-horizontal 22s linear infinite;
+  --animate-marquee-horizontal: marquee-horizontal 36s linear infinite;
 }
 
 @keyframes marquee-horizontal {
