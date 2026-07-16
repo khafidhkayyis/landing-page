@@ -14,13 +14,12 @@ export default function HeroSection() {
         className="object-cover"
         sizes="100vw"
       />
-
       <div
         className="absolute inset-0 z-[1] bg-black/60"
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex min-h-[150vh] lg:min-h-[70vh] flex-col">
+      <div className="relative z-10 flex min-h-[70vh] flex-col">
         <Navbar variant="transparent" />
         <Container className="flex flex-1 flex-col items-center lg:items-start justify-center text-center">
           <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
