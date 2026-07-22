@@ -1,19 +1,20 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { Container, Navbar } from "@/components/layout";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[70vh] w-full">
-      <Image
-        src="/images/hero-background.png"
-        alt="Global digital network connectivity"
-        fill
-        priority
-        className="object-cover"
-        sizes="100vw"
-      />
+    <section className="relative min-h-[70vh] w-full overflow-hidden">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+        aria-hidden="true"
+      >
+        <source src="/videos/banner.mp4" type="video/mp4" />
+      </video>
       <div
         className="absolute inset-0 z-[1] bg-black/60"
         aria-hidden="true"
