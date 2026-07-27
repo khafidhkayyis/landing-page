@@ -53,7 +53,7 @@ function ContactForm() {
         <input
           type="text"
           name="fullName"
-          placeholder="Full Name"
+          placeholder="Full Name*"
           value={form.fullName}
           onChange={(e) => updateField("fullName", e.target.value)}
           className={inputClassName}
@@ -62,7 +62,7 @@ function ContactForm() {
         <input
           type="email"
           name="email"
-          placeholder="Email Address"
+          placeholder="Email Address*"
           value={form.email}
           onChange={(e) => updateField("email", e.target.value)}
           className={inputClassName}
@@ -74,7 +74,7 @@ function ContactForm() {
         <input
           type="text"
           name="industry"
-          placeholder="Industry"
+          placeholder="Industry*"
           value={form.industry}
           onChange={(e) => updateField("industry", e.target.value)}
           className={inputClassName}
@@ -83,7 +83,7 @@ function ContactForm() {
         <input
           type="text"
           name="numberOfEmployees"
-          placeholder="Number of Employees"
+          placeholder="Number of Employees*"
           value={form.numberOfEmployees}
           onChange={(e) => updateField("numberOfEmployees", e.target.value)}
           className={inputClassName}
@@ -94,7 +94,7 @@ function ContactForm() {
       <input
         type="text"
         name="subject"
-        placeholder="Subject"
+        placeholder="Subject*"
         value={form.subject}
         onChange={(e) => updateField("subject", e.target.value)}
         className={inputClassName}
@@ -103,7 +103,7 @@ function ContactForm() {
 
       <textarea
         name="message"
-        placeholder="Your Message"
+        placeholder="Your Message*"
         rows={6}
         value={form.message}
         onChange={(e) => updateField("message", e.target.value)}
