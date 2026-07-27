@@ -22,14 +22,14 @@ export default function HeroSection() {
 
       <div className="relative z-10 flex min-h-[70vh] flex-col">
         <Navbar variant="transparent" />
-        <Container className="flex flex-1 flex-col items-center lg:items-start justify-center text-start">
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        <Container className="flex w-full flex-1 flex-col items-start justify-center text-left">
+          <h2 className="w-full max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             Empowering Growth Through Innovation
           </h2>
-          <p className="mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
+          <p className="mt-6 w-full max-w-2xl text-lg text-white/80 sm:text-xl">
             One ecosystem to help your business build smarter, operate better, and create meaningful experiences.
           </p>
-          <div className="mt-10 flex flex-row gap-4 lg:flex-col">
+          <div className="mt-10 flex w-full flex-row flex-wrap gap-4 lg:flex-col lg:items-start">
             <Link
               href="#contact"
               className="rounded-lg bg-cyan-500 border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
