@@ -15,19 +15,19 @@ export const businessContact = {
 
 export const brands: Brand[] = [
   {
-    image: "/images/skyfy-logo.png",
+    image: "/images/brands/skyfystudio.png",
     title: "Skyfy Studio",
     slug: "studio",
     href: "/business/studio",
   },
   {
-    image: "/images/skyfy-logo.png",
+    image: "/images/brands/skyfytech.png",
     title: "Skyfy Technology",
     slug: "technology",
     href: "/business/technology",
   },
   {
-    image: "/images/skyfy-logo.png",
+    image: "/images/brands/skyfyproduction.png",
     title: "Skyfy Production",
     slug: "production",
     href: "/business/production",

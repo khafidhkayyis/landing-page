@@ -19,29 +19,15 @@ function TestimonialCard({ name, position, company, quote, initials }: Testimoni
   );
 }
 
-type TestimonialRowProps = {
-  reverse?: boolean;
-  offset?: boolean;
-  duration?: number;
-};
-
-function TestimonialRow({
-  reverse = false,
-  offset = false,
-  duration = 35,
-}: TestimonialRowProps) {
+function TestimonialMarquee() {
   const items = [...testimonials, ...testimonials];
 
   return (
     <div className="relative overflow-hidden">
       <div
-        className={`flex w-max items-stretch gap-5 sm:gap-6 ${
-          offset ? "pl-16 sm:pl-24 lg:pl-32" : ""
-        }`}
+        className="flex w-max items-stretch gap-5 sm:gap-6"
         style={{
-          animation: `marquee-horizontal ${duration}s linear infinite${
-            reverse ? " reverse" : ""
-          }`,
+          animation: "marquee-horizontal 40s linear infinite",
         }}
       >
         {items.map((testimonial, index) => (
@@ -64,10 +50,7 @@ export default function Aboutus() {
         </h2>
       </Container>
 
-      <div className="flex flex-col gap-5 sm:gap-6">
-        <TestimonialRow duration={38} />
-        <TestimonialRow reverse offset duration={42} />
-      </div>
+      <TestimonialMarquee />
     </section>
   );
 }
