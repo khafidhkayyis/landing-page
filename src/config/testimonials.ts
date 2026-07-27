@@ -1,37 +1,54 @@
 export type Testimonial = {
   name: string;
-  role: string;
+  position: string;
+  company: string;
   quote: string;
   initials: string;
 };
 
 export const testimonials: Testimonial[] = [
   {
-    name: "Daniel Teguh",
-    role: "CEO at Company",
-    initials: "DT",
-    quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    name: "Mego",
+    position: "Staff",
+    company: "Honda Jakarta Center",
+    initials: "M",
+    quote: "Good response and responsive to client requests.",
   },
   {
-    name: "Maria Ananta",
-    role: "CEO at Company",
-    initials: "MA",
+    name: "Eko Ralesiya",
+    position: "IT Section Head",
+    company: "Akebono Brake Astra Indonesia",
+    initials: "ER",
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Our experience has been very positive. Their team is professional and their services have significantly improved our outcomes",
   },
   {
-    name: "Rizky Pratama",
-    role: "Director at Company",
-    initials: "RP",
+    name: "Gregory Kurnia",
+    position: "CEO",
+    company: "DEUS Human Capital Services",
+    initials: "GK",
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "I had a good experience working with Skyfy on my gamification project. The team was communicative and understood our expectations. Wishing all the best for Skyfy",
   },
   {
-    name: "Siti Rahayu",
-    role: "Manager at Company",
-    initials: "SR",
-    quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    name: "Ridho Renata Rizkyafrian Triyanto",
+    position: "Supervisor",
+    company: "PT. Astra Otoparts Divisi Nusametal",
+    initials: "RR",
+    quote: "Flexibility and commitment.",
+  },
+  {
+    name: "Andri",
+    position: "Corp IT Manager",
+    company: "PT. Parador Management International",
+    initials: "A",
+    quote: "Good partner.",
+  },
+  {
+    name: "Emir Nizar",
+    position: "IT Solution Head",
+    company: "PT Infosys Solusi Terpadu",
+    initials: "EN",
+    quote: "Good quality and post marketing.",
   },
 ];

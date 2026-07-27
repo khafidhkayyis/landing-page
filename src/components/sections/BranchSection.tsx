@@ -29,7 +29,7 @@ function BrandCard({ image, title, href }: Brand) {
               href={href}
               className="relative z-10 rounded-full bg-[#F26522] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#ff7a33] sm:px-6 sm:text-xs"
             >
-              Visit Website
+              Visit Page
             </Link>
           </div>
         </div>

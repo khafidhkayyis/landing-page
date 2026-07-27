@@ -42,17 +42,10 @@ export default function AboutSection() {
               About Skyfy Enterprise
             </h2>
             <p className="mb-8 text-base font-bold leading-8 text-gray-300 sm:text-lg">
-              Our goal is to make it as easy as possible for you to walk away
-              with the solution that suits your needs perfectly.
+              Technology. Infrastructure. Creativity.
             </p>
             <p className="leading-8 text-gray-400">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Since 2022, Skyfy Enterprise has been helping organizations unlock new opportunities through technology and creativity. We believe every business deserves solutions that are practical, scalable, and built around real challenges. Through our three business units, we deliver integrated capabilities in software development, IT infrastructure and automation, and creative production—working together to help businesses build smarter, operate better, and grow with confidence.
             </p>
 
             {/* Divider */}

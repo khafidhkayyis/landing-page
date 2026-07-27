@@ -22,25 +22,22 @@ export default function HeroSection() {
 
       <div className="relative z-10 flex min-h-[70vh] flex-col">
         <Navbar variant="transparent" />
-        <Container className="flex flex-1 flex-col items-center lg:items-start justify-center text-center">
-          <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Unleash Your
-          </h1>
+        <Container className="flex flex-1 flex-col items-center lg:items-start justify-center text-start">
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Hidden Potential
+            Empowering Growth Through Innovation
           </h2>
           <p className="mt-6 max-w-2xl text-lg text-white/80 sm:text-xl">
-            Transform Ideas into Impactful Tech Solutions
+            One ecosystem to help your business build smarter, operate better, and create meaningful experiences.
           </p>
           <div className="mt-10 flex flex-row gap-4 lg:flex-col">
             <Link
-              href="/get-started"
+              href="#contact"
               className="rounded-lg bg-cyan-500 border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
               Contact Us
             </Link>
             <Link
-              href="#features"
+              href="#brands"
               className="rounded-lg bg-[#EC530C] border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
               Learn More
