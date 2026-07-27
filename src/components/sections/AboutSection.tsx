@@ -6,14 +6,16 @@ import { RotatingText } from "@/components/ui/RotatingText";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-black py-16 text-white  lg:py-24">
-      <Container className="relative">
+    <section id="about" className="bg-black py-16 text-white lg:py-24">
+      <Container>
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* LEFT — images */}
+          {/* LEFT — images + rotating badge */}
           <div className="relative mx-auto h-[400px] w-full max-w-[340px] sm:h-[480px] sm:max-w-[400px] md:h-[560px] md:max-w-[460px] lg:mx-0 lg:h-[650px] lg:max-w-none">
-            <RotatingText className="absolute left-2 top-0 z-20 size-28 sm:left-4 sm:size-36 lg:left-5 lg:size-44" />
+            <RotatingText
+              className="absolute left-2 top-0 z-20 size-32 sm:left-4 sm:size-40 lg:left-5 lg:size-48"
+              duration={18}
+            />
 
-            {/* Image besar */}
             <div className="absolute left-16 top-8 sm:left-24 sm:top-10 lg:left-32 lg:top-10">
               <Image
                 src="/images/about-large.png"
@@ -24,8 +26,7 @@ export default function AboutSection() {
               />
             </div>
 
-            {/* Image kecil */}
-            <div className="absolute bottom-0 left-0 z-20">
+            <div className="absolute bottom-0 left-0 z-10">
               <Image
                 src="/images/about-small.png"
                 alt="Jakarta city skyline at night"
@@ -45,10 +46,16 @@ export default function AboutSection() {
               Technology. Infrastructure. Creativity.
             </p>
             <p className="leading-8 text-gray-400">
-              Since 2022, Skyfy Enterprise has been helping organizations unlock new opportunities through technology and creativity. We believe every business deserves solutions that are practical, scalable, and built around real challenges. Through our three business units, we deliver integrated capabilities in software development, IT infrastructure and automation, and creative production—working together to help businesses build smarter, operate better, and grow with confidence.
+              Since 2022, Skyfy Enterprise has been helping organizations unlock
+              new opportunities through technology and creativity. We believe
+              every business deserves solutions that are practical, scalable,
+              and built around real challenges. Through our three business
+              units, we deliver integrated capabilities in software
+              development, IT infrastructure and automation, and creative
+              production—working together to help businesses build smarter,
+              operate better, and grow with confidence.
             </p>
 
-            {/* Divider */}
             <div className="mb-10 mt-16 flex items-center">
               <div className="h-px flex-1 bg-gray-700" />
               <span className="ml-6 text-sm font-bold uppercase tracking-[3px] text-white">
@@ -56,14 +63,10 @@ export default function AboutSection() {
               </span>
             </div>
 
-            {/* Clients */}
-            <div className="absolute bottom-0 left-0 right-0 z-10">
-              <ClientMarquee />
-            </div>
-
+            <ClientMarquee />
           </div>
         </div>
-      </Container >
-    </section >
+      </Container>
+    </section>
   );
 }

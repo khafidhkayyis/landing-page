@@ -8,10 +8,13 @@ type RotatingTextProps = {
   duration?: number;
 };
 
+const defaultLabel =
+  "SKYFY ENTERPRISE • SKYFY ENTERPRISE • SKYFY ENTERPRISE • ";
+
 export function RotatingText({
   className = "",
-  text = "SKYFY ENTERPRISE • SKYFY ENTERPRISE • ",
-  duration = 22,
+  text = defaultLabel,
+  duration = 20,
 }: RotatingTextProps) {
   const pathId = useId().replace(/:/g, "");
 
@@ -19,42 +22,35 @@ export function RotatingText({
     <div className={`relative ${className}`}>
       <span className="sr-only">Skyfy Enterprise</span>
 
-      <svg viewBox="0 0 200 200" className="size-full" aria-hidden="true">
-        <circle cx="100" cy="100" r="72" className="fill-black" />
-        <circle
-          cx="100"
-          cy="100"
-          r="88"
-          fill="none"
-          stroke="white"
-          strokeWidth="16"
-        />
-      </svg>
-
-      <div
-        className="absolute inset-0"
-        style={{ animation: `spin ${duration}s linear infinite` }}
+      <svg
+        viewBox="0 0 200 200"
+        className="size-full"
         aria-hidden="true"
       >
-        <svg viewBox="0 0 200 200" className="size-full">
+        <g
+          style={{
+            transformOrigin: "100px 100px",
+            animation: `spin ${duration}s linear infinite`,
+          }}
+        >
           <defs>
             <path
               id={pathId}
-              d="M 100, 100 m -80, 0 a 80, 80 0 1, 1 160, 0 a 80, 80 0 1, 1 -160, 0"
+              d="M 100, 28 a 72, 72 0 1, 1 0, 144 a 72, 72 0 1, 1 0,-144"
             />
           </defs>
           <text
             fill="white"
-            fontSize="10.5"
-            fontWeight="700"
-            letterSpacing="2.5"
+            fontSize="12.5"
+            fontWeight="600"
+            letterSpacing="4"
           >
             <textPath href={`#${pathId}`} startOffset="0">
-              {text}
+              {text.toUpperCase()}
             </textPath>
           </text>
-        </svg>
-      </div>
+        </g>
+      </svg>
     </div>
   );
 }
