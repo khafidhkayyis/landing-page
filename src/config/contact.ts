@@ -5,5 +5,5 @@ export const contactInfo = {
   phone: "+62 819-0881-6893   |   +62 812-2922-2060",
   email: "business@skyfyenterprise.com",
   location: "Tangerang, Indonesia",
-  whatsapp: "628234344453399",
+  whatsapp: "6281908816893",
 };

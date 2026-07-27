@@ -5,6 +5,11 @@ import { useMemo, useState, type FormEvent } from "react";
 
 import { Container } from "@/components/layout";
 import { contactInfo } from "@/config/contact";
+import {
+  buildContactMailtoUrl,
+  type ContactFormPayload,
+  isContactFormComplete,
+} from "@/lib/contact-email";
 
 const inputClassName =
   "w-full rounded-xl border border-white/25 bg-transparent px-4 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-white/50 sm:text-base";
@@ -22,11 +27,9 @@ function ContactForm() {
   const [form, setForm] = useState(initialFormState);
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const isComplete = useMemo(
-    () => Object.values(form).every((value) => value.trim() !== ""),
-    [form],
-  );
+  const isComplete = useMemo(() => isContactFormComplete(form), [form]);
 
   function updateField(field: keyof typeof form, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -34,7 +37,11 @@ function ContactForm() {
     setSubmitted(false);
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function openMailto(payload: ContactFormPayload) {
+    window.location.href = buildContactMailtoUrl(payload);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!isComplete) {
@@ -42,9 +49,44 @@ function ContactForm() {
       return;
     }
 
+    setIsSubmitting(true);
     setError("");
-    setSubmitted(true);
-    setForm(initialFormState);
+
+    const payload: ContactFormPayload = { ...form };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setForm(initialFormState);
+        return;
+      }
+
+      const result = (await response.json()) as {
+        fallback?: "mailto";
+        error?: string;
+      };
+
+      if (response.status === 503 && result.fallback === "mailto") {
+        openMailto(payload);
+        setSubmitted(true);
+        setForm(initialFormState);
+        return;
+      }
+
+      setError(result.error ?? "Failed to send. Please try again.");
+    } catch {
+      openMailto(payload);
+      setSubmitted(true);
+      setForm(initialFormState);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -119,17 +161,17 @@ function ContactForm() {
 
       {submitted ? (
         <p className="text-sm text-emerald-400" role="status">
-          Thank you! Your message has been submitted.
+          Thank you! Your message was sent to {contactInfo.email}.
         </p>
       ) : null}
 
       <div className="flex justify-end pt-2">
         <button
           type="submit"
-          disabled={!isComplete}
+          disabled={!isComplete || isSubmitting}
           className="rounded-xl bg-[#00AEEF] px-10 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#0096d1] disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Submit
+          {isSubmitting ? "Sending..." : "Submit"}
         </button>
       </div>
     </form>
