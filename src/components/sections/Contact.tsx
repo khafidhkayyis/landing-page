@@ -1,7 +1,7 @@
 "use client";
 
 import { Mail, MapPin, Phone } from "lucide-react";
-import type { FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 
 import { Container } from "@/components/layout";
 import { contactInfo } from "@/config/contact";
@@ -9,18 +9,53 @@ import { contactInfo } from "@/config/contact";
 const inputClassName =
   "w-full rounded-xl border border-white/25 bg-transparent px-4 py-3.5 text-sm text-white outline-none transition-colors placeholder:text-gray-500 focus:border-white/50 sm:text-base";
 
+const initialFormState = {
+  fullName: "",
+  email: "",
+  industry: "",
+  numberOfEmployees: "",
+  subject: "",
+  message: "",
+};
+
 function ContactForm() {
+  const [form, setForm] = useState(initialFormState);
+  const [error, setError] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const isComplete = useMemo(
+    () => Object.values(form).every((value) => value.trim() !== ""),
+    [form],
+  );
+
+  function updateField(field: keyof typeof form, value: string) {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setError("");
+    setSubmitted(false);
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!isComplete) {
+      setError("Please fill in all fields before submitting.");
+      return;
+    }
+
+    setError("");
+    setSubmitted(true);
+    setForm(initialFormState);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <input
           type="text"
           name="fullName"
           placeholder="Full Name"
+          value={form.fullName}
+          onChange={(e) => updateField("fullName", e.target.value)}
           className={inputClassName}
           required
         />
@@ -28,6 +63,8 @@ function ContactForm() {
           type="email"
           name="email"
           placeholder="Email Address"
+          value={form.email}
+          onChange={(e) => updateField("email", e.target.value)}
           className={inputClassName}
           required
         />
@@ -38,6 +75,8 @@ function ContactForm() {
           type="text"
           name="industry"
           placeholder="Industry"
+          value={form.industry}
+          onChange={(e) => updateField("industry", e.target.value)}
           className={inputClassName}
           required
         />
@@ -45,6 +84,8 @@ function ContactForm() {
           type="text"
           name="numberOfEmployees"
           placeholder="Number of Employees"
+          value={form.numberOfEmployees}
+          onChange={(e) => updateField("numberOfEmployees", e.target.value)}
           className={inputClassName}
           required
         />
@@ -54,6 +95,8 @@ function ContactForm() {
         type="text"
         name="subject"
         placeholder="Subject"
+        value={form.subject}
+        onChange={(e) => updateField("subject", e.target.value)}
         className={inputClassName}
         required
       />
@@ -62,14 +105,29 @@ function ContactForm() {
         name="message"
         placeholder="Your Message"
         rows={6}
+        value={form.message}
+        onChange={(e) => updateField("message", e.target.value)}
         className={`${inputClassName} resize-none`}
         required
       />
 
+      {error ? (
+        <p className="text-sm text-red-400" role="alert">
+          {error}
+        </p>
+      ) : null}
+
+      {submitted ? (
+        <p className="text-sm text-emerald-400" role="status">
+          Thank you! Your message has been submitted.
+        </p>
+      ) : null}
+
       <div className="flex justify-end pt-2">
         <button
           type="submit"
-          className="rounded-xl bg-[#00AEEF] px-10 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#0096d1]"
+          disabled={!isComplete}
+          className="rounded-xl bg-[#00AEEF] px-10 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:bg-[#0096d1] disabled:cursor-not-allowed disabled:opacity-50"
         >
           Submit
         </button>
