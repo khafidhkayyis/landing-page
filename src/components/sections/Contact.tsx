@@ -180,7 +180,7 @@ function ContactForm() {
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-black py-16 text-white lg:py-24">
+    <section id={contactInfo.sectionId} className="relative overflow-hidden bg-black py-16 text-white lg:py-24">
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         aria-hidden="true"

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { navLinks, siteConfig } from "@/config/site";
+import { contactInfo } from "@/config/contact";
 
 import { Container } from "./Container";
 import { NavbarMobileMenu } from "./NavbarMobileMenu";
@@ -63,7 +64,7 @@ export function Navbar({ variant = "default" }: NavbarProps) {
 
             <div className="flex items-center gap-2">
               <Link
-                href="/get-started"
+                href={contactInfo.href}
                 className={`hidden rounded-lg px-4 py-2 text-sm font-medium uppercase transition-opacity hover:opacity-90 md:inline-block ${isTransparent
                   ? "bg-cyan-500 text-white hover:bg-cyan-400"
                   : "bg-foreground text-background"

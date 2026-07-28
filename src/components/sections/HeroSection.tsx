@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Container, Navbar } from "@/components/layout";
+import { contactInfo } from "@/config/contact";
 
 export default function HeroSection() {
   return (
@@ -31,7 +32,7 @@ export default function HeroSection() {
           </p>
           <div className="mt-10 flex w-full flex-row flex-wrap gap-4 lg:flex-col lg:items-start">
             <Link
-              href="#contact"
+              href={contactInfo.href}
               className="rounded-lg bg-cyan-500 border border-white/30 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
               Contact Us

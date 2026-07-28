@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import type { NavLink } from "@/types/navigation";
+import { contactInfo } from "@/config/contact";
 
 type NavbarMobileMenuProps = {
   links: NavLink[];
@@ -92,7 +93,7 @@ export function NavbarMobileMenu({
             ))}
             <li>
               <Link
-                href="/get-started"
+                href={contactInfo.href}
                 onClick={() => setIsOpen(false)}
                 className={`inline-block rounded-4xl px-4 py-2 text-sm font-medium uppercase transition-opacity hover:opacity-90 ${
                   isTransparent

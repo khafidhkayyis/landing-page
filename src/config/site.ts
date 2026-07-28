@@ -8,8 +8,8 @@ export const siteConfig = {
 
 export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "Features", href: "#features" },
   { label: "About", href: "#about" },
+  { label: "Business Unit", href: "#brands" },
 ];
 
 export const footerLinkGroups: FooterLinkGroup[] = [
