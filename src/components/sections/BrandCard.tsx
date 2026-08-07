@@ -32,15 +32,14 @@ export function BrandCard({
           <h3 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
             {title}
           </h3>
-          <p className="mt-2 text-sm font-semibold text-gray-300 sm:text-base">
+          <p className="mt-2 text-sm font-semibold text-gray-300 sm:text-base italic">
             {tagline}
           </p>
 
           <div className="mt-4">
             <p
-              className={`text-sm leading-7 text-gray-400 ${
-                expanded ? "" : "line-clamp-4"
-              }`}
+              className={`text-sm leading-7 text-gray-400 ${expanded ? "" : "line-clamp-4"
+                }`}
             >
               {description}
             </p>
