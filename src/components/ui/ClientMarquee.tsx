@@ -21,7 +21,7 @@ export function ClientMarquee() {
               alt={sponsor.name}
               width={400}
               height={120}
-              className="h-8 w-auto object-contain opacity-45 grayscale transition-opacity duration-300 hover:opacity-80 sm:h-9 lg:h-10"
+              className="h-8 w-auto object-contain grayscale brightness-150 contrast-125 opacity-80 transition-[opacity,filter] duration-300 hover:opacity-100 sm:h-9 lg:h-16"
             />
           </div>
         ))}
