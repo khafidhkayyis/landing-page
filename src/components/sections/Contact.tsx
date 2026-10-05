@@ -6,7 +6,6 @@ import { useMemo, useState, type FormEvent } from "react";
 import { Container } from "@/components/layout";
 import { contactInfo } from "@/config/contact";
 import {
-  buildContactMailtoUrl,
   type ContactFormPayload,
   isContactFormComplete,
 } from "@/lib/contact-email";
@@ -37,10 +36,6 @@ function ContactForm() {
     setSubmitted(false);
   }
 
-  function openMailto(payload: ContactFormPayload) {
-    window.location.href = buildContactMailtoUrl(payload);
-  }
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -51,6 +46,7 @@ function ContactForm() {
 
     setIsSubmitting(true);
     setError("");
+    setSubmitted(false);
 
     const payload: ContactFormPayload = { ...form };
 
@@ -61,29 +57,20 @@ function ContactForm() {
         body: JSON.stringify(payload),
       });
 
-      if (response.ok) {
-        setSubmitted(true);
-        setForm(initialFormState);
-        return;
-      }
-
-      const result = (await response.json()) as {
-        fallback?: "mailto";
+      const result = (await response.json().catch(() => null)) as {
+        ok?: boolean;
         error?: string;
-      };
+      } | null;
 
-      if (response.status === 503 && result.fallback === "mailto") {
-        openMailto(payload);
+      if (response.ok && result?.ok) {
         setSubmitted(true);
         setForm(initialFormState);
         return;
       }
 
-      setError(result.error ?? "Failed to send. Please try again.");
+      setError(result?.error ?? "Failed to send. Please try again.");
     } catch {
-      openMailto(payload);
-      setSubmitted(true);
-      setForm(initialFormState);
+      setError("Failed to reach the server. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

@@ -3,10 +3,13 @@ import { NextResponse } from "next/server";
 
 import { contactInfo } from "@/config/contact";
 import {
+  buildContactEmailHtml,
   buildContactEmailText,
   type ContactFormPayload,
   isContactFormComplete,
 } from "@/lib/contact-email";
+
+export const runtime = "nodejs";
 
 function getPayload(body: unknown): ContactFormPayload | null {
   if (!body || typeof body !== "object") {
@@ -35,6 +38,26 @@ function getPayload(body: unknown): ContactFormPayload | null {
   return payload;
 }
 
+function getSmtpConfig() {
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  const port = Number(process.env.SMTP_PORT ?? 587);
+
+  if (!host || !user || !pass) {
+    return null;
+  }
+
+  return {
+    host,
+    user,
+    pass,
+    port,
+    from: process.env.SMTP_FROM ?? user,
+    to: process.env.SMTP_TO ?? contactInfo.email,
+  };
+}
+
 export async function POST(request: Request) {
   let body: unknown;
 
@@ -55,38 +78,50 @@ export async function POST(request: Request) {
     );
   }
 
-  const { SMTP_HOST, SMTP_USER, SMTP_PASS, SMTP_FROM, SMTP_PORT } = process.env;
-
-  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+  const smtp = getSmtpConfig();
+  if (!smtp) {
     return NextResponse.json(
-      { ok: false, fallback: "mailto" as const },
-      { status: 503 },
+      {
+        ok: false,
+        error: "SMTP is not configured. Update SMTP_* in .env.local.",
+      },
+      { status: 500 },
     );
   }
 
   try {
     const transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: Number(SMTP_PORT ?? 587),
-      secure: Number(SMTP_PORT ?? 587) === 465,
+      host: smtp.host,
+      port: smtp.port,
+      secure: smtp.port === 465,
       auth: {
-        user: SMTP_USER,
-        pass: SMTP_PASS,
+        user: smtp.user,
+        pass: smtp.pass,
       },
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 10_000,
     });
 
     await transporter.sendMail({
-      from: SMTP_FROM ?? SMTP_USER,
-      to: contactInfo.email,
+      from: smtp.from,
+      to: smtp.to,
       replyTo: payload.email,
       subject: `[Website Contact] ${payload.subject}`,
       text: buildContactEmailText(payload),
+      html: buildContactEmailHtml(payload),
     });
 
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (error) {
+    console.error("Contact email failed:", error);
+
     return NextResponse.json(
-      { ok: false, error: "Failed to send email. Please try again." },
+      {
+        ok: false,
+        error:
+          "Failed to send email. Check SMTP credentials in .env.local and try again.",
+      },
       { status: 500 },
     );
   }
