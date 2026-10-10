@@ -21,7 +21,11 @@ export function ClientMarquee() {
               alt={sponsor.name}
               width={400}
               height={120}
-              className="h-8 w-auto object-contain grayscale brightness-150 contrast-125 opacity-80 transition-[opacity,filter] duration-300 hover:opacity-100 sm:h-9 lg:h-16"
+              className={`h-8 w-auto object-contain grayscale ${
+                sponsor.name === "Djarum 76" || sponsor.name === "Happy Kiddy"
+                  ? ""
+                  : "brightness-150 contrast-125"
+              } opacity-80 transition-[opacity,filter] duration-300 hover:opacity-100 sm:h-9 lg:h-16`}
             />
           </div>
         ))}
